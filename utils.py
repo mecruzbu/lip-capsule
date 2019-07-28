@@ -10,12 +10,12 @@ def load_mnist(batch_size, is_training=True):
         fd = open(os.path.join(path, 'train-images-idx3-ubyte'))
         loaded = np.fromfile(file=fd, dtype=np.uint8)
         # trainX = loaded[16:].reshape((7800, 64, 64, 1)).astype(np.float32) # changed 60k to 7800 & changed 28 to 64
-        trainX = loaded[16:].reshape((15600, 160, 160, 1)).astype(np.float32) # changed 60k to 15.6k & changed 28 to 160
+        trainX = loaded[16:].reshape((9100, 160, 160, 1)).astype(np.float32) # changed 60k to 15.6k & changed 28 to 160
 
         fd = open(os.path.join(path, 'train-labels-idx1-ubyte'))
         loaded = np.fromfile(file=fd, dtype=np.uint8)
         # trainY = loaded[8:].reshape((7800)).astype(np.int32) # changed 60k to 7800
-        trainY = loaded[8:].reshape((15600)).astype(np.int32) # changed 60k to 7800
+        trainY = loaded[8:].reshape((9100)).astype(np.int32) # changed 60k to 7800
 
         # trX = trainX[:7000] / 255. # changed 55k to 7k
         # trY = trainY[:7000]        # changed 55k to 7k
@@ -28,14 +28,14 @@ def load_mnist(batch_size, is_training=True):
 
 # --start---------------------------------------- 5 x 5 -------------------------------------
 
-        trX = trainX[:14400] / 255. # changed 55000 to 14400
-        trY = trainY[:14400]        # changed 55000 to 14400
+        trX = trainX[:7700] / 255. # changed 55000 to 14400
+        trY = trainY[:7700]        # changed 55000 to 14400
 
-        valX = trainX[14400:, ] / 255.  # changed 55000 to 14400
-        valY = trainY[14400:]  	# changed 55000 to 14400
+        valX = trainX[7700:, ] / 255.  # changed 55000 to 14400
+        valY = trainY[7700:]  	# changed 55000 to 14400
 
-        num_tr_batch = 14400 // batch_size  # changed 55000 to 14400
-        num_val_batch = 1200 // batch_size  # changed 5000 to 1200
+        num_tr_batch = 7700 // batch_size  # changed 55000 to 14400
+        num_val_batch = 1400 // batch_size  # changed 5000 to 1200
 
 # ---end------------------------------------------ 5 x 5 -------------------------------------
 
@@ -44,16 +44,16 @@ def load_mnist(batch_size, is_training=True):
         fd = open(os.path.join(path, 't10k-images-idx3-ubyte'))
         loaded = np.fromfile(file=fd, dtype=np.uint8)
         # teX = loaded[16:].reshape((1200, 64, 64, 1)).astype(np.float) # changed 10000 to 1200 & changed 28 to 64
-        teX = loaded[16:].reshape((2400, 160, 160, 1)).astype(np.float) # changed 10000 to 2400
+        teX = loaded[16:].reshape((1400, 160, 160, 1)).astype(np.float) # changed 10000 to 2400
  
         fd = open(os.path.join(path, 't10k-labels-idx1-ubyte'))
         loaded = np.fromfile(file=fd, dtype=np.uint8)
         # teY = loaded[8:].reshape((1200)).astype(np.int32)
-        teY = loaded[8:].reshape((2400)).astype(np.int32) # changed 10000 to 2400
+        teY = loaded[8:].reshape((1400)).astype(np.int32) # changed 10000 to 2400
 
 
         # num_te_batch = 1200 // batch_size
-        num_te_batch = 2400 // batch_size  # changed 10000 to 2400
+        num_te_batch = 1400 // batch_size  # changed 10000 to 2400
         
         return teX / 255., teY, num_te_batch
 
